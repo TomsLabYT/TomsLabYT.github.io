@@ -116,7 +116,9 @@ simplestRadical(squareRootInterior*-1);
 } else {
 simplestRadical(squareRootInterior);
 }
-if (squareRootInterior < 0) {
+if (inputA === 0) {        
+alert("A cannot equal zero!");                
+} else if (squareRootInterior < 0) {
 if (Number.isInteger(squareRoot)) {
 alert(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)} i`);
 } else {
