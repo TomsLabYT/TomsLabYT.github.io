@@ -121,15 +121,15 @@ simplestRadical(squareRootInterior);
 }
 if (squareRootInterior < 0) {
 if (Number.isInteger(squareRoot)) {
-console.log(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)} i`);
+alert(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)} i`);
 } else {
-console.log(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}) i`);
+alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}) i`);
 }
 } else {
 if (Number.isInteger(squareRoot)) {
-console.log(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)}, X = ${answerDecimalA} or ${answerDecimalB}`);
+alert(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)}, X = ${answerDecimalA} or ${answerDecimalB}`);
 } else {
-console.log(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}), X = ${answerDecimalA} or ${answerDecimalB}`);
+alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}), X = ${answerDecimalA} or ${answerDecimalB}`);
 }
 }
 }
