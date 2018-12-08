@@ -22,9 +22,38 @@
  When you are ready, click the button.       
 </p>
 
-<button onclick="myFunction()">Begin</button>        
+<button onclick="myFunction()">Begin</button>  
+        
+        
+        <h2>Similar Birthday Chance</h2>
+        <p>Putting in the number of people will give the chance that at least two of them will share a birthday.</p>
+        <button onclick="birthday()">Start</button>
 
 <script>
+        
+function birthday() {        
+let testFour = prompt("Number of people.");
+let numberPeople = testFour;
+let numberTrials = 100000; // Times to run the simulation 
+let matches = 0;
+for (let g = 0; g < numberTrials; g++) {
+let birthDates = [];
+let numberOfMatches = 0;
+for (let q = 0; q < numberPeople; q++) {  birthDates.push(Math.floor(Math.random() * 364));
+};
+for (let j = 0; j < numberPeople; j++) {
+  for (let v =0; v < numberPeople; v++) {
+    if (birthDates[j] == birthDates[v]){
+      numberOfMatches ++;
+    }
+  } 
+}
+if (numberOfMatches > numberPeople) {
+  matches ++;
+} 
+}
+alert(matches / numberTrials);
+}        
 
 function myFunction() {
 let test = prompt("Enter A");
