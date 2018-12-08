@@ -15,21 +15,15 @@
 <h2>Input format</h2>
        
 <p>The format for entering information is important. Get the equation into AX^2 + BX + C = 0 <br>
- A cannot equal 0, otherwise it will not be solved. Enter A, B and C into the appropriate boxes and click solve.
+ A cannot equal 0, otherwise it will not be solved. Enter A, B and C into the appropriate boxes as prompted. <br>
+ When you are ready, click that button.       
 </p>
 
-<form>
-  Coefficient A:<br />
-  <input name="inputA" type="text" /><br />
-  Coefficient B:<br />
-  <input name="inputB" type="text" /><br />
-  Constant:<br />
-  <input name="inputC" type="text" /><br />
-  <input name="submit" type="submit" />
-</form>
+<button onclick="myFunction()">Begin</button>        
 
 <script>
 
+function myFunction() {
 let test = prompt("Enter A");
 let testTwo = prompt("Enter B");
 let testThree = prompt("Enter C");
@@ -134,6 +128,7 @@ alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqr
 }
 }
 quadratic();
+}        
 
 </script>
 
