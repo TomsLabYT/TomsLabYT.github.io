@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+<meta charset="utf-8">
+        
+<title>Quadratic solver</title>
+    
+</head>
+
+<body>
+
+<h1>Solving quadratic equations</h1>
+      
+<h2>Input format</h2>
+       
+<p>The format for entering information is important. Get the equation into AX^2 + BX + C = 0 <br>
+ A cannot equal 0, otherwise it will not be solved. Enter A, B and C into the appropriate boxes and click solve.
+</p>
+
+<form>
+  Coefficient A:<br />
+  <input name="inputA" type="text" /><br />
+  Coefficient B:<br />
+  <input name="inputB" type="text" /><br />
+  Constant:<br />
+  <input name="inputC" type="text" /><br />
+  <input name="submit" type="submit" />
+</form>
+
+<script>
+
+let inputA = 0; // add the X^2 coefficient here
+let inputB = 0; // add the X coefficient here
+let inputC = 0; // add the constant here
+let negativeB = 0;
+let bSquared = 0;
+let fourTimesATimesC = 0;
+let squareRootInterior = 0;
+let squareRoot = 0;
+let denominator = 0;
+let equationTopA = 0;
+let equationTopB = 0;
+let answerDecimalA = 0;
+let answerDecimalB = 0;
+let answerOne = 0;
+var simplify = function (numerator, denominator){
+var a = [];
+for(var i=2; i<=denominator; i++){
+if(!(denominator % i)){
+a.push(i);
+}
+}
+for(var s=a.length;s>=0;s=s-1){
+if(!(numerator % a[s-1])){
+var common = a[s-1];
+break;
+}
+}
+return ""+numerator/common+"/"+denominator/common;
+};
+// finished declaring variables and functions
+// begin calculations
+negativeB = inputB * -1;   // calculates negative B
+bSquared = inputB * inputB;   // calculates B^2
+fourTimesATimesC = 4 * inputA * inputC;   // calculates 4 x A x C
+squareRootInterior = bSquared - fourTimesATimesC;     // finds what everything inside square root equals
+denominator = 2 * inputA;    // calculates the denominator
+if (squareRootInterior < 0) {      // if it's a negative of a square root
+squareRoot = Math.sqrt(squareRootInterior * -1);    // change it to a positive root
+} else {      // otherwise
+squareRoot = Math.sqrt(squareRootInterior);    // calculate as normal
+}
+equationTopA =  negativeB + squareRoot;  // for finding approximation of +
+equationTopB =  negativeB - squareRoot;  // for finding approximation of -
+answerDecimalA = equationTopA / denominator;  // actually finds decimal
+answerDecimalB = equationTopB / denominator;  // does it again for -
+if (negativeB < 0 && denominator < 0) { // if both top and bottom negative
+negativeB = negativeB * -1;   // make positive
+denominator = denominator * -1;
+} else if (negativeB >= 0 && denominator < 0) {    // if bottom negative
+negativeB = negativeB * -1;    // move it to the top
+denominator = denominator * -1;
+}
+if (negativeB/denominator === 1) {    // will give 1, -1, 0, or simplify if none of those
+answerOne = 1;
+} else if (negativeB/denominator === -1) {   
+answerOne = -1;
+} else if (negativeB/denominator === 0) {
+answerOne = 0;
+} else {
+answerOne = simplify(negativeB,denominator); 
+} 
+//finish calculations
+//begin deciding which output to use
+if (squareRootInterior < 0) {
+if (Math.floor(Math.sqrt(squareRootInterior*-1))-Math.sqrt(squareRootInterior*-1) != 0) {     // checks if the square root is an integer
+console.log(`X = ${answerOne} +/- sqrt(${squareRootInterior * -1})/${denominator} i`);
+} else {
+console.log(`X = ${answerOne} +/- ${squareRoot}/${denominator} i`);
+}
+} else {
+if (Math.floor(Math.sqrt(squareRootInterior))-Math.sqrt(squareRootInterior) != 0) {
+console.log(`X = ${answerOne} +/- sqrt(${squareRootInterior})/${denominator}, X = ${answerDecimalA} or ${answerDecimalB}`);
+} else {
+console.log(`X = ${answerOne} +/- ${squareRoot}/${denominator}, X = ${answerDecimalA} or ${answerDecimalB}`);
+}
+}
+
+</script>
+
+</body>
+
+</html>
