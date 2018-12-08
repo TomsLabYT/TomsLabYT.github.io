@@ -30,9 +30,36 @@
 
 <script>
 
-let inputA = 0; // add the X^2 coefficient here
-let inputB = 0; // add the X coefficient here
-let inputC = 0; // add the constant here
+let test = prompt("Enter A");
+let testTwo = prompt("Enter B");
+let testThree = prompt("Enter C");
+let inputA = test;
+let inputB = testTwo;
+let inputC = testThree;
+let coefficientSqrt = 0;
+let sqrtRemainder = 9999999;
+let numberStorage = 0;
+let possibleRemainders = [];
+function simplestRadical(squareRootInteriorTwo) {
+for (let c = 2; squareRootInteriorTwo/c/c > 1; c++) {
+numberStorage = squareRootInteriorTwo/c/c;
+if (Number.isInteger(numberStorage)) {
+possibleRemainders.push(numberStorage);
+}
+}
+for (let b = 0; b < possibleRemainders.length; b++) {
+if (possibleRemainders[b] < sqrtRemainder) {
+sqrtRemainder = possibleRemainders[b];
+}
+}
+if (sqrtRemainder === 9999999) {
+sqrtRemainder = squareRootInteriorTwo;
+coefficientSqrt = 1
+} else {
+coefficientSqrt = Math.sqrt(squareRootInteriorTwo/sqrtRemainder);
+}
+}
+function quadratic() {
 let negativeB = 0;
 let bSquared = 0;
 let fourTimesATimesC = 0;
@@ -57,55 +84,56 @@ var common = a[s-1];
 break;
 }
 }
+if (Number.isInteger(numerator/denominator)) {
+return numerator/denominator;
+} else if (isNaN(numerator/common)) {
+return ""+numerator+"/"+denominator;
+} else {
 return ""+numerator/common+"/"+denominator/common;
+}
 };
-// finished declaring variables and functions
-// begin calculations
-negativeB = inputB * -1;   // calculates negative B
-bSquared = inputB * inputB;   // calculates B^2
-fourTimesATimesC = 4 * inputA * inputC;   // calculates 4 x A x C
-squareRootInterior = bSquared - fourTimesATimesC;     // finds what everything inside square root equals
-denominator = 2 * inputA;    // calculates the denominator
-if (squareRootInterior < 0) {      // if it's a negative of a square root
-squareRoot = Math.sqrt(squareRootInterior * -1);    // change it to a positive root
-} else {      // otherwise
-squareRoot = Math.sqrt(squareRootInterior);    // calculate as normal
-}
-equationTopA =  negativeB + squareRoot;  // for finding approximation of +
-equationTopB =  negativeB - squareRoot;  // for finding approximation of -
-answerDecimalA = equationTopA / denominator;  // actually finds decimal
-answerDecimalB = equationTopB / denominator;  // does it again for -
-if (negativeB < 0 && denominator < 0) { // if both top and bottom negative
-negativeB = negativeB * -1;   // make positive
-denominator = denominator * -1;
-} else if (negativeB >= 0 && denominator < 0) {    // if bottom negative
-negativeB = negativeB * -1;    // move it to the top
-denominator = denominator * -1;
-}
-if (negativeB/denominator === 1) {    // will give 1, -1, 0, or simplify if none of those
-answerOne = 1;
-} else if (negativeB/denominator === -1) {   
-answerOne = -1;
-} else if (negativeB/denominator === 0) {
-answerOne = 0;
-} else {
-answerOne = simplify(negativeB,denominator); 
-} 
-//finish calculations
-//begin deciding which output to use
+negativeB = inputB * -1;
+bSquared = inputB * inputB;
+fourTimesATimesC = 4 * inputA * inputC;
+squareRootInterior = bSquared - fourTimesATimesC;
+denominator = 2 * inputA;
 if (squareRootInterior < 0) {
-if (Math.floor(Math.sqrt(squareRootInterior*-1))-Math.sqrt(squareRootInterior*-1) != 0) {     // checks if the square root is an integer
-console.log(`X = ${answerOne} +/- sqrt(${squareRootInterior * -1})/${denominator} i`);
+squareRoot = Math.sqrt(squareRootInterior * -1);
 } else {
-console.log(`X = ${answerOne} +/- ${squareRoot}/${denominator} i`);
+squareRoot = Math.sqrt(squareRootInterior);
+}
+equationTopA =  negativeB + squareRoot;
+equationTopB =  negativeB - squareRoot;
+answerDecimalA = equationTopA / denominator;
+answerDecimalB = equationTopB / denominator;
+if (negativeB < 0 && denominator < 0) {
+negativeB = negativeB * -1;
+denominator = denominator * -1;
+} else if (negativeB >= 0 && denominator < 0) {
+negativeB = negativeB * -1;
+denominator = denominator * -1;
+}
+answerOne = simplify(negativeB,denominator); 
+if (squareRootInterior < 0) {
+simplestRadical(squareRootInterior*-1); 
+} else {
+simplestRadical(squareRootInterior);
+}
+if (squareRootInterior < 0) {
+if (Number.isInteger(squareRoot)) {
+console.log(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)} i`);
+} else {
+console.log(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}) i`);
 }
 } else {
-if (Math.floor(Math.sqrt(squareRootInterior))-Math.sqrt(squareRootInterior) != 0) {
-console.log(`X = ${answerOne} +/- sqrt(${squareRootInterior})/${denominator}, X = ${answerDecimalA} or ${answerDecimalB}`);
+if (Number.isInteger(squareRoot)) {
+console.log(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)}, X = ${answerDecimalA} or ${answerDecimalB}`);
 } else {
-console.log(`X = ${answerOne} +/- ${squareRoot}/${denominator}, X = ${answerDecimalA} or ${answerDecimalB}`);
+console.log(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}), X = ${answerDecimalA} or ${answerDecimalB}`);
 }
 }
+}
+quadratic();
 
 </script>
 
