@@ -29,6 +29,10 @@
         <p>Putting in the number of people will give the chance that at least two of them will share a birthday.</p>
         <button onclick="birthday()">Start</button>
 
+        <h2>Simplify fractions</h2>
+        <p>like it says</p>
+        <button onclick="simplifyFractions()">Begin</button>
+        
 <script>
         
 function birthday() {        
@@ -162,7 +166,31 @@ alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqr
 }
 }
 quadratic();
-}        
+}                
+        
+function simplifyFractions() {
+let numerator = alert('Enter Numerator');
+let denominator = alert('Enter Denominator):
+var a = [];
+for(var i=2; i<=denominator; i++){
+if(!(denominator % i)){
+a.push(i);
+}
+}
+for(var s=a.length;s>=0;s=s-1){
+if(!(numerator % a[s-1])){
+var common = a[s-1];
+break;
+}
+}
+if (Number.isInteger(numerator/denominator)) {
+return numerator/denominator;
+} else if (isNaN(numerator/common)) {
+return ""+numerator+"/"+denominator;
+} else {
+return ""+numerator/common+"/"+denominator/common;
+}
+}
 
 </script>
 
