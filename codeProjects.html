@@ -161,9 +161,9 @@ alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqr
 }
 } else {
 if (Number.isInteger(squareRoot)) {
-alert(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)}, X = ${answerDecimalA.toFixed(3)} or ${answerDecimalB.toFixed(3)}`);
+alert(`X = ${answerOne} +/- ${simplify(squareRoot,denominator)}, X = ${answerDecimalA.toFixed(6)} or ${answerDecimalB.toFixed(6)}`);
 } else {
-alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}), X = ${answerDecimalA.toFixed(3)} or ${answerDecimalB.toFixed(3)}`);
+alert(`X = ${answerOne} +/- (${simplify(coefficientSqrt,denominator)})sqrt(${sqrtRemainder}), X = ${answerDecimalA.toFixed(6)} or ${answerDecimalB.toFixed(6)}`);
 }
 }
 }
